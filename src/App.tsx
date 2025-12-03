@@ -1,10 +1,12 @@
-import SpeedrunWidget from './components/SpeedrunWidget';
+// import SpeedrunWidget from './components/SpeedrunWidget';
+import WikipediaViewer from './components/WikipediaViewer';
 import './App.css';
 
 function App() {
   return (
     <div className="app">
-      <SpeedrunWidget />
+      {/* <SpeedrunWidget /> */}
+      <WikipediaViewer />
     </div>
   );
 }

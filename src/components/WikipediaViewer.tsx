@@ -1,0 +1,132 @@
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import DOMPurify from "dompurify";
+import "./WikipediaViewer.css";
+
+interface WikiApiArticle {
+  parse?: {
+    title?: string;
+    pageid?: number;
+    text?: {
+      "*"?: string;
+    };
+  };
+}
+
+const getArticleData = async (language: string, title: string) => {
+  if (!title) return null;
+
+  const resp = await fetch(
+    `https://${language}.wikipedia.org/w/api.php?` +
+      new URLSearchParams({
+        page: title,
+        origin: "*",
+        action: "parse",
+        format: "json",
+        disableeditsection: "true",
+        redirects: "true",
+      }).toString(),
+  );
+  return resp.json() as Promise<WikiApiArticle>;
+};
+
+const WikipediaViewer = () => {
+  const [articleTitle, setArticleTitle] = useState("React_(JavaScript_library)");
+  const [language, setLanguage] = useState("en");
+
+  const { data, isFetching, isError } = useQuery({
+    queryKey: ["article", articleTitle, language],
+    queryFn: () => getArticleData(language, articleTitle),
+    enabled: Boolean(articleTitle),
+    refetchOnWindowFocus: false,
+  });
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setArticleTitle(e.target.value);
+  };
+
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(e.target.value);
+  };
+
+  if (isFetching) {
+    return (
+      <div className="wikipedia-viewer">
+        <div className="wiki-controls">
+          <input
+            type="text"
+            value={articleTitle}
+            onChange={handleTitleChange}
+            placeholder="Enter Wikipedia article title"
+            className="wiki-input"
+          />
+          <select value={language} onChange={handleLanguageChange} className="wiki-select">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+        <div className="wiki-loading">Loading article...</div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="wikipedia-viewer">
+        <div className="wiki-controls">
+          <input
+            type="text"
+            value={articleTitle}
+            onChange={handleTitleChange}
+            placeholder="Enter Wikipedia article title"
+            className="wiki-input"
+          />
+          <select value={language} onChange={handleLanguageChange} className="wiki-select">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+        <div className="wiki-error">Error loading article. Please try again.</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="wikipedia-viewer">
+      <div className="wiki-controls">
+        <input
+          type="text"
+          value={articleTitle}
+          onChange={handleTitleChange}
+          placeholder="Enter Wikipedia article title"
+          className="wiki-input"
+        />
+        <select value={language} onChange={handleLanguageChange} className="wiki-select">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+        </select>
+      </div>
+
+      {data?.parse?.text?.["*"] && (
+        <div className="wiki-article">
+          <h1 className="wiki-title">{data.parse.title}</h1>
+          <div
+            className="wiki-content"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(data.parse.text["*"]),
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default WikipediaViewer;
+

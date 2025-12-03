@@ -1,0 +1,614 @@
+.wikipedia-viewer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.wiki-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.wiki-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.wiki-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+}
+
+.wiki-loading,
+.wiki-error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.wiki-error {
+  color: #d32f2f;
+}
+
+.wiki-article {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  overflow: visible; /* Don't clip floated content */
+}
+
+.wiki-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+  font-weight: normal;
+}
+
+.wiki-content {
+  line-height: 1.6;
+  color: #202122;
+  font-family: sans-serif; /* Wikipedia body text uses sans-serif */
+}
+
+/* Reset box-sizing for wiki content - override global border-box */
+.wiki-content,
+.wiki-content *,
+.wiki-content *::before,
+.wiki-content *::after {
+  box-sizing: content-box !important;
+}
+
+/* Ensure wiki-content allows floats to work properly */
+.wiki-content {
+  display: block;
+  overflow: visible;
+  width: 100%;
+}
+
+/* Headings - with padding like text */
+/* Only h2 (with underline) uses serif font */
+/* Headers have overflow:hidden to not extend under floated elements */
+.wiki-content h2 {
+  font-size: 1.5em;
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+  font-weight: normal;
+  margin-top: 1em;
+  margin-bottom: 0.25em;
+  padding-top: 0.5em;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid #a2a9b1;
+  overflow: hidden; /* Creates block formatting context - doesn't extend under floats */
+}
+
+/* h3 and h4 use sans-serif */
+.wiki-content h3 {
+  font-size: 1.2em;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+  padding-top: 0.3em;
+  overflow: hidden; /* Creates block formatting context - doesn't extend under floats */
+}
+
+.wiki-content h4 {
+  font-size: 1em;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.8em;
+  margin-bottom: 0.25em;
+  padding-top: 0.2em;
+  overflow: hidden; /* Creates block formatting context - doesn't extend under floats */
+}
+
+/* Paragraphs - allow text to wrap around floated images */
+.wiki-content p {
+  margin: 1em 0;
+  overflow: visible;
+}
+
+/* Links */
+.wiki-content a {
+  color: #0645ad;
+  text-decoration: none;
+}
+
+.wiki-content a:hover {
+  text-decoration: underline;
+}
+
+.wiki-content a:visited {
+  color: #0b0080;
+}
+
+/* Lists */
+.wiki-content ul,
+.wiki-content ol {
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+.wiki-content li {
+  margin-bottom: 0.25em;
+}
+
+/* ===================
+   IMAGE & THUMBNAIL STYLES
+   =================== */
+
+/* Base image styles */
+.wiki-content img {
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Thumbnail containers - DEFAULT: float right (most common in Wikipedia) */
+.wiki-content .thumb {
+  display: block;
+  width: auto !important;
+  background-color: transparent;
+  margin-bottom: 0.5em;
+  float: right !important; /* Default to right float */
+  clear: right;
+  margin: 0.5em 0 1.3em 1.4em !important;
+}
+
+/* Right-aligned thumbnails (explicit) */
+.wiki-content .tright,
+.wiki-content .thumb.tright,
+.wiki-content div.tright {
+  float: right !important;
+  clear: right;
+  margin: 0.5em 0 1.3em 1.4em !important;
+}
+
+/* Left-aligned thumbnails */
+.wiki-content .tleft,
+.wiki-content .thumb.tleft,
+.wiki-content div.tleft {
+  float: left !important;
+  clear: left;
+  margin: 0.5em 1.4em 1.3em 0 !important;
+}
+
+/* Center-aligned thumbnails (no float) */
+.wiki-content .tnone,
+.wiki-content .thumb.tnone,
+.wiki-content div.tnone,
+.wiki-content .thumb.center {
+  float: none !important;
+  display: block;
+  margin: 0.5em auto !important;
+  clear: both;
+}
+
+/* Inner thumbnail wrapper - contains BOTH image AND caption inside the border */
+/* Uses width:min-content so width is determined by image, not text */
+.wiki-content .thumbinner {
+  display: block;
+  width: min-content;
+  border: 1px solid #c8ccd1;
+  padding: 3px;
+  background-color: #f8f9fa;
+  font-size: 94%;
+  text-align: center;
+  overflow: hidden;
+  min-width: 100px;
+  max-width: 100%;
+}
+
+/* Thumbnail image itself with border */
+.wiki-content .thumbimage {
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #c8ccd1;
+  margin: 0 auto;
+}
+
+/* Thumbnail border class */
+.wiki-content .thumbborder {
+  border: 1px solid #eaecf0;
+}
+
+/* Thumbnail caption - INSIDE thumbinner, below the image */
+/* Text wraps because container width is min-content (image width) */
+.wiki-content .thumbcaption {
+  display: block;
+  text-align: left;
+  line-height: 1.4em;
+  padding: 3px;
+  font-size: 94%;
+  border: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background-color: #f8f9fa; /* Same as thumbinner background */
+  /* Constrain to parent width - don't expand container */
+  box-sizing: border-box;
+}
+
+.wiki-content .thumbcaption:empty {
+  padding: 0;
+  display: none;
+}
+
+/* Magnify icon container */
+.wiki-content .magnify {
+  float: right;
+  margin-left: 3px;
+}
+
+.wiki-content .magnify a {
+  display: block;
+  text-indent: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 15px;
+  height: 11px;
+}
+
+/* ===================
+   INFOBOX STYLES
+   =================== */
+
+.wiki-content .infobox {
+  border: 1px solid #a2a9b1;
+  border-spacing: 3px;
+  /* background set by table cells via inline styles from Wikipedia */
+  color: black;
+  margin: 0.5em 0 0.5em 1em;
+  padding: 0.2em;
+  float: right !important;
+  clear: right;
+  font-size: 88%;
+  line-height: 1.5em;
+  width: 22em;
+}
+
+/* All infobox cells - vertical align top */
+.wiki-content .infobox-header,
+.wiki-content .infobox-label,
+.wiki-content .infobox-above,
+.wiki-content .infobox-full-data,
+.wiki-content .infobox-data,
+.wiki-content .infobox-below,
+.wiki-content .infobox-subheader,
+.wiki-content .infobox-image,
+.wiki-content .infobox-navbar,
+.wiki-content .infobox th,
+.wiki-content .infobox td {
+  vertical-align: top;
+  padding: 0.2em 0.4em;
+}
+
+/* Label and data cells - left align */
+.wiki-content .infobox-label,
+.wiki-content .infobox-data,
+.wiki-content .infobox th,
+.wiki-content .infobox td {
+  text-align: left;
+}
+
+/* Title and above - centered, larger, bold */
+.wiki-content .infobox .infobox-above,
+.wiki-content .infobox .infobox-title,
+.wiki-content .infobox caption {
+  font-size: 125%;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Title padding */
+.wiki-content .infobox-title,
+.wiki-content .infobox caption {
+  padding: 0.2em;
+}
+
+/* Centered elements */
+.wiki-content .infobox .infobox-header,
+.wiki-content .infobox .infobox-subheader,
+.wiki-content .infobox .infobox-image,
+.wiki-content .infobox .infobox-full-data,
+.wiki-content .infobox .infobox-below {
+  text-align: center;
+}
+
+/* Navbar - right align */
+.wiki-content .infobox .infobox-navbar {
+  text-align: right;
+}
+
+/* Infobox images - centered */
+.wiki-content .infobox img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Infobox caption below image */
+.wiki-content .infobox .infobox-caption {
+  text-align: center;
+  font-size: 90%;
+  padding: 0.2em;
+}
+
+/* ===================
+   FIGURE STYLES (Modern Wikipedia)
+   Figure contains: border around entire thing including caption
+   =================== */
+
+.wiki-content figure,
+.wiki-content figure[typeof~="mw:File/Thumb"],
+.wiki-content figure[typeof~="mw:File/Frame"] {
+  display: block;
+  width: min-content;
+  padding: 3px;
+  background-color: #f8f9fa;
+  border: 1px solid #c8ccd1;
+  text-align: center;
+  min-width: 100px;
+  max-width: 100%;
+  /* Default: float right */
+  float: right !important;
+  clear: right;
+  margin: 0.5em 0 1.3em 1.4em !important;
+}
+
+/* Right-aligned figures (explicit) */
+.wiki-content figure.mw-halign-right {
+  float: right !important;
+  clear: right;
+  margin: 0.5em 0 1.3em 1.4em !important;
+}
+
+/* Left-aligned figures */
+.wiki-content figure.mw-halign-left {
+  float: left !important;
+  clear: left;
+  margin: 0.5em 1.4em 1.3em 0 !important;
+}
+
+/* Center figures */
+.wiki-content figure.mw-halign-center,
+.wiki-content figure.mw-halign-none {
+  float: none !important;
+  margin: 0.5em auto !important;
+}
+
+/* Image inside figure - has its own border */
+.wiki-content figure img,
+.wiki-content figure a img {
+  display: block;
+  border: 1px solid #c8ccd1;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+/* Caption INSIDE the figure border, below image */
+/* Text wraps because container width is min-content (image width) */
+.wiki-content figure figcaption,
+.wiki-content figcaption {
+  display: block;
+  padding: 3px;
+  font-size: 94%;
+  line-height: 1.4em;
+  text-align: left;
+  border: 0;
+  background-color: #f8f9fa; /* Same as figure background */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* Constrain to parent width - don't expand container */
+  box-sizing: border-box;
+}
+
+/* ===================
+   FLOAT UTILITIES
+   =================== */
+
+.wiki-content .floatright,
+.wiki-content div.floatright,
+.wiki-content table.floatright {
+  float: right;
+  clear: right;
+  margin: 0 0 0.5em 0.5em;
+}
+
+.wiki-content .floatleft,
+.wiki-content div.floatleft,
+.wiki-content table.floatleft {
+  float: left;
+  clear: left;
+  margin: 0 0.5em 0.5em 0;
+}
+
+/* ===================
+   TABLE STYLES
+   =================== */
+
+.wiki-content table {
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.wiki-content table.wikitable {
+  background-color: #f8f9fa;
+  color: #202122;
+  margin: 1em 0;
+  border: 1px solid #a2a9b1;
+  border-collapse: collapse;
+}
+
+.wiki-content table.wikitable > tr > th,
+.wiki-content table.wikitable > tr > td,
+.wiki-content table.wikitable > * > tr > th,
+.wiki-content table.wikitable > * > tr > td {
+  border: 1px solid #a2a9b1;
+  padding: 0.2em 0.4em;
+}
+
+.wiki-content table.wikitable > tr > th,
+.wiki-content table.wikitable > * > tr > th {
+  background-color: #eaecf0;
+  text-align: center;
+}
+
+.wiki-content table.wikitable > caption {
+  font-weight: bold;
+}
+
+/* ===================
+   GALLERY STYLES
+   =================== */
+
+.wiki-content .gallery {
+  margin: 2px;
+  padding: 2px;
+  display: block;
+}
+
+.wiki-content li.gallerybox {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px;
+}
+
+.wiki-content li.gallerybox div.thumb {
+  text-align: center;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.wiki-content .gallerybox .thumb img {
+  background: #fff;
+}
+
+/* ===================
+   NAVBOX & SIDEBAR
+   =================== */
+
+.wiki-content .navbox,
+.wiki-content .sidebar {
+  border: 1px solid #a2a9b1;
+  padding: 0;
+}
+
+.wiki-content .sidebar {
+  width: 22em;
+  float: right;
+  clear: right;
+  margin: 0.5em 0 1em 1em;
+  background: #f8f9fa;
+}
+
+/* ===================
+   HIDE UNNECESSARY ELEMENTS
+   =================== */
+
+/* Hide edit links */
+.wiki-content .mw-editsection {
+  display: none;
+}
+
+/* Hide coordinates (optional) */
+.wiki-content #coordinates {
+  display: none;
+}
+
+/* Hide citation needed markers */
+.wiki-content sup.noprint {
+  display: none;
+}
+
+/* Hide cite reference links */
+.wiki-content a[href*="#cite_note"] {
+  display: none;
+}
+
+/* ===================
+   CLEAR FLOATS
+   =================== */
+
+.wiki-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Don't clear floats on headings - let images float next to text */
+/* Only clear when explicitly needed */
+.wiki-content .mw-headline-clear {
+  clear: both;
+}
+
+/* ===================
+   MISCELLANEOUS
+   =================== */
+
+/* Hatnotes */
+.wiki-content .hatnote {
+  font-style: italic;
+  padding-left: 1.6em;
+  margin-bottom: 0.5em;
+}
+
+/* Message boxes */
+.wiki-content .mbox-small,
+.wiki-content .ambox {
+  border: 1px solid #a2a9b1;
+  background-color: #f8f9fa;
+  margin: 0.5em 0;
+  padding: 0.5em 1em;
+}
+
+/* Blockquotes */
+.wiki-content blockquote {
+  margin: 1em 40px;
+  padding: 0;
+  border-left: none;
+}
+
+/* Code */
+.wiki-content pre,
+.wiki-content code {
+  font-family: monospace;
+  background-color: #f8f9fa;
+}
+
+.wiki-content pre {
+  padding: 1em;
+  border: 1px solid #eaecf0;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ===================
+   RESPONSIVE ADJUSTMENTS
+   =================== */
+
+@media (max-width: 768px) {
+  .wiki-content .infobox,
+  .wiki-content .sidebar {
+    float: none;
+    width: 100%;
+    margin: 1em 0;
+  }
+
+  .wiki-content .thumb.tright,
+  .wiki-content .thumb.tleft,
+  .wiki-content figure {
+    float: none;
+    margin: 1em auto;
+  }
+}
