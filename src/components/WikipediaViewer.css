@@ -1,6 +1,6 @@
 .wikipedia-viewer {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 0 360px; /* Add left margin for speedrun widget */
   padding: 20px;
 }
 
