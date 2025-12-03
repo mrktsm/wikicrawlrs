@@ -1,0 +1,246 @@
+@font-face {
+  font-family: "Futura Now Headline";
+  src: url("../assets/fonts/FuturaNowHeadlineBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+.speedrun-widget {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #151515;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  padding: 6px;
+  font-family: "Calibri", sans-serif;
+  color: #fff;
+  min-width: 340px;
+  max-width: 380px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.speedrun-header {
+  margin-bottom: 0;
+}
+
+.game-title {
+  font-size: 18px;
+  font-weight: normal;
+  color: #fff;
+  margin: -6px -6px 0 -6px;
+  background: linear-gradient(to bottom, #242424, #151515);
+  padding: 3px 7px;
+  border-radius: 2px 2px 0 0;
+  border-bottom: 1px solid #333;
+  font-family: "Calibri", sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.game-title > div:first-child {
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.category {
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 2px;
+  font-family: "Calibri", sans-serif;
+  font-weight: normal;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.category-number {
+  color: #fff;
+  font-weight: bold;
+}
+
+.segments-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 0 -6px 0 -6px;
+  padding: 0;
+  background-color: #151515;
+  margin-bottom: 0;
+}
+
+.segment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 7px;
+  font-size: 16px;
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+  border-top: 1px solid #333;
+}
+
+.segment:not(:last-child) {
+  border-bottom: 1px solid #333;
+}
+
+.segments-list .segment:last-child {
+  border-bottom: none;
+  background-color: #242424;
+}
+
+.segments-list .segment:nth-last-child(2) {
+  border-bottom: 1px solid #898989;
+}
+
+.segment:nth-child(odd) {
+  background-color: #242424;
+  margin: 0;
+  padding: 3px 7px;
+}
+
+.segment:nth-child(even) {
+  background-color: #151515;
+  padding: 3px 7px;
+}
+
+.segment.current-segment {
+  background: linear-gradient(to bottom, #0066cc, #003d7a);
+  margin: 0;
+  padding: 3px 7px;
+  font-weight: 500;
+  border-radius: 0;
+  border-top: 1px solid #0066cc;
+}
+
+.segment.current-segment:not(:last-child) {
+  border-bottom: 1px solid #0066cc;
+}
+
+.segment.current-segment .segment-name {
+  color: #fff;
+}
+
+.segment.current-segment .cumulative-time {
+  color: #fff;
+}
+
+.segment.current-segment .time-diff {
+  color: #fff;
+}
+
+.segment-name {
+  flex: 1;
+  text-align: left;
+  color: #fff;
+  font-family: "Calibri", sans-serif;
+  font-weight: normal;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.segment-times {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.time-diff {
+  font-size: 14px;
+  min-width: 50px;
+  text-align: right;
+  font-family: "Calibri", sans-serif;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.time-diff.ahead {
+  color: #90ee90;
+}
+
+.time-diff.behind {
+  color: #ff4444;
+}
+
+.cumulative-time {
+  font-size: 14px;
+  color: #fff;
+  min-width: 70px;
+  text-align: right;
+  font-family: "Calibri", sans-serif;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.current-time-display {
+  font-size: 56px;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #c0ffc0, #00aa00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: right;
+  padding: 2px 0 0 0;
+  font-family: "Futura Now Headline", sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  margin: 2px 0 -12px 0;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.timer-centiseconds {
+  font-size: 70%;
+  display: inline-block;
+}
+
+.speedrun-stats {
+  margin-top: 0;
+  margin: 0 -6px -6px -6px;
+  padding: 0 7px;
+  font-size: 14px;
+  background: linear-gradient(to bottom, #242424, #151515);
+  border-radius: 0 0 2px 2px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  color: #fff;
+}
+
+.stat-label {
+  color: #fff;
+  font-family: "Calibri", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.stat-value {
+  color: #fff;
+  font-family: "Calibri", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.stat-value.behind {
+  color: #ff4444;
+  font-size: 16px;
+}
+
+/* Scrollbar styling */
+.segments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.segments-list::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.segments-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+
+.segments-list::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
