@@ -1,39 +1,58 @@
 .container {
-  width: 1200px;
-  margin: 0 auto;
-  padding-top: 90px;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
   position: relative;
   min-height: 100vh;
-  transform: scale(1.5);
-  padding-left: 280px;
-  transform-origin: center top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
 }
 
 .menu-header {
   text-align: left;
   margin-bottom: 40px;
-  padding-left: 0;
+  padding: 0;
+  width: min(95vw, 1200px);
+  max-width: 100%;
 }
 
 .menu-title {
   font-family: "Calibri", sans-serif;
-  font-size: 24px;
-  font-weight: 400;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 500;
   color: #202122;
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
 }
 
 .menu-subtitle {
   font-family: "Calibri", sans-serif;
-  font-size: 14px;
+  font-size: clamp(14px, 1.8vw, 18px);
   color: #666;
   margin: 0;
   line-height: 1.5;
 }
 
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(clamp(140px, 15vw, 220px), 1fr));
+  grid-template-rows: repeat(3, minmax(clamp(140px, 15vw, 220px), 1fr));
+  gap: 8px;
+  justify-content: center;
+  align-items: start;
+  margin: 0 auto;
+  width: min(95vw, 1200px);
+  max-width: 100%;
+}
+
 .mail {
-  width: 270px;
-  height: 132px;
+  grid-column: 1 / 3;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to bottom, #33cc33, #00a400);
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -49,28 +68,29 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: clamp(50px, 6vw, 85px);
   color: #fff;
 }
 
 .mailmail {
   color: #fff;
-  position: relative;
-  top: 105px;
-  left: 15px;
+  position: absolute;
+  bottom: clamp(8px, 1.5vw, 15px);
+  left: clamp(12px, 1.5vw, 18px);
   font-family: "Calibri", sans-serif;
   font-weight: 400;
   letter-spacing: 0.9px;
-  font-size: 15px;
+  font-size: clamp(13px, 1.8vw, 18px);
   cursor: default;
 }
 
 .skype {
-  width: 132px;
-  height: 132px;
+  grid-column: 1;
+  grid-row: 2;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to bottom, #e6396b, #bc1e49);
   position: relative;
-  top: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -84,30 +104,30 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 66px;
-  height: 66px;
+  width: clamp(70px, 8vw, 110px);
+  height: clamp(70px, 8vw, 110px);
   filter: brightness(0) invert(1);
 }
 
 .skypeskype {
   color: #fff;
-  position: relative;
-  top: 105px;
-  left: 15px;
+  position: absolute;
+  bottom: clamp(8px, 1.5vw, 15px);
+  left: clamp(12px, 1.5vw, 18px);
   font-family: "Calibri", sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: clamp(13px, 1.8vw, 18px);
   letter-spacing: 0.9px;
   cursor: default;
 }
 
 .map {
-  width: 132px;
-  height: 132px;
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to bottom, #ffaa33, #ff8800);
   position: relative;
-  left: 139px;
-  top: -126px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -121,30 +141,30 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
+  width: clamp(60px, 7vw, 95px);
+  height: clamp(60px, 7vw, 95px);
   color: #fff;
 }
 
 .mapmap {
   color: #fff;
-  position: relative;
-  top: 105px;
-  left: 15px;
+  position: absolute;
+  bottom: clamp(8px, 1.5vw, 15px);
+  left: clamp(12px, 1.5vw, 18px);
   font-family: "Calibri", sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: clamp(13px, 1.8vw, 18px);
   letter-spacing: 0.9px;
   cursor: default;
 }
 
 .calendar {
-  width: 270px;
-  height: 132px;
+  grid-column: 3 / 5;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to bottom, #cc00d4, #a400ab);
   position: relative;
-  top: -396px;
-  left: 275px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -158,8 +178,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 66px;
-  height: 66px;
+  width: clamp(70px, 8vw, 110px);
+  height: clamp(70px, 8vw, 110px);
   filter: brightness(0) invert(1);
 }
 
@@ -169,23 +189,23 @@
 
 .calendarDay {
   color: #ffffff;
-  position: relative;
-  top: 105px;
-  left: 15px;
+  position: absolute;
+  bottom: clamp(8px, 1.5vw, 15px);
+  left: clamp(12px, 1.5vw, 18px);
   font-family: "Calibri", sans-serif;
   font-weight: 400;
   letter-spacing: 0.9px;
-  font-size: 15px;
+  font-size: clamp(13px, 1.8vw, 18px);
   cursor: default;
 }
 
 .sports {
-  width: 270px;
-  height: 270px;
+  grid-column: 3 / 5;
+  grid-row: 2 / 4;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to bottom, #8dd4ff, #61b8fa);
   position: relative;
-  top: -391px;
-  left: 275px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -199,8 +219,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 88px;
-  height: 88px;
+  width: clamp(90px, 10vw, 150px);
+  height: clamp(90px, 10vw, 150px);
   color: #fff;
 }
 
@@ -210,23 +230,23 @@
 
 .sportsLabel {
   color: #fff;
-  position: relative;
-  top: 242px;
-  left: 15px;
+  position: absolute;
+  bottom: clamp(8px, 1.5vw, 15px);
+  left: clamp(12px, 1.5vw, 18px);
   font-family: "Calibri", sans-serif;
-  font-size: 14px;
+  font-size: clamp(13px, 1.8vw, 18px);
   font-weight: 400;
   letter-spacing: 0.9px;
   cursor: default;
 }
 
 .photos {
-  width: 132px;
-  height: 132px;
+  grid-column: 5;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to bottom, #1e3a8a, #142b6b);
   position: relative;
-  top: -798px;
-  left: 550px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -240,30 +260,30 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
+  width: clamp(55px, 7vw, 90px);
+  height: clamp(55px, 7vw, 90px);
   color: #fff;
 }
 
 .photophoto {
   color: #fff;
-  position: relative;
-  top: 105px;
-  left: 15px;
+  position: absolute;
+  bottom: clamp(8px, 1.5vw, 15px);
+  left: clamp(12px, 1.5vw, 18px);
   font-family: "Calibri", sans-serif;
-  font-size: 14px;
+  font-size: clamp(12px, 1.6vw, 17px);
   font-weight: 400;
   letter-spacing: 0.9px;
   cursor: default;
 }
 
 .help {
-  width: 132px;
-  height: 132px;
+  grid-column: 5;
+  grid-row: 2;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(to bottom, #a0a0a0, #808080);
   position: relative;
-  top: -791px;
-  left: 550px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -277,18 +297,18 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 61px;
-  height: 61px;
+  width: clamp(70px, 8vw, 105px);
+  height: clamp(70px, 8vw, 105px);
   color: #fff;
 }
 
 .helphelp {
   color: #fff;
-  position: relative;
-  top: 105px;
-  left: 15px;
+  position: absolute;
+  bottom: clamp(8px, 1.5vw, 15px);
+  left: clamp(12px, 1.5vw, 18px);
   font-family: "Calibri", sans-serif;
-  font-size: 14px;
+  font-size: clamp(12px, 1.6vw, 17px);
   font-weight: 400;
   cursor: default;
 }
@@ -309,10 +329,8 @@
 }
 
 .menu-article-preview {
-  position: absolute;
+  position: fixed;
   right: 20px;
   top: 100px;
   z-index: 10;
-  transform: scale(0.667); /* Counteract the 1.5x scale from container */
-  transform-origin: top right;
 }
