@@ -30,8 +30,13 @@ const getArticleData = async (language: string, title: string) => {
   return resp.json() as Promise<WikiApiArticle>;
 };
 
-const WikipediaViewer = () => {
-  const [articleTitle, setArticleTitle] = useState("React_(JavaScript_library)");
+interface WikipediaViewerProps {
+  initialTitle?: string;
+  hideControls?: boolean;
+}
+
+const WikipediaViewer = ({ initialTitle = "React_(JavaScript_library)", hideControls = false }: WikipediaViewerProps) => {
+  const [articleTitle, setArticleTitle] = useState(initialTitle);
   const [language, setLanguage] = useState("en");
 
   const { data, isFetching, isError } = useQuery({
@@ -52,21 +57,23 @@ const WikipediaViewer = () => {
   if (isFetching) {
     return (
       <div className="wikipedia-viewer">
-        <div className="wiki-controls">
-          <input
-            type="text"
-            value={articleTitle}
-            onChange={handleTitleChange}
-            placeholder="Enter Wikipedia article title"
-            className="wiki-input"
-          />
-          <select value={language} onChange={handleLanguageChange} className="wiki-select">
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-          </select>
-        </div>
+        {!hideControls && (
+          <div className="wiki-controls">
+            <input
+              type="text"
+              value={articleTitle}
+              onChange={handleTitleChange}
+              placeholder="Enter Wikipedia article title"
+              className="wiki-input"
+            />
+            <select value={language} onChange={handleLanguageChange} className="wiki-select">
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+            </select>
+          </div>
+        )}
         <div className="wiki-loading">Loading article...</div>
       </div>
     );
@@ -75,6 +82,31 @@ const WikipediaViewer = () => {
   if (isError) {
     return (
       <div className="wikipedia-viewer">
+        {!hideControls && (
+          <div className="wiki-controls">
+            <input
+              type="text"
+              value={articleTitle}
+              onChange={handleTitleChange}
+              placeholder="Enter Wikipedia article title"
+              className="wiki-input"
+            />
+            <select value={language} onChange={handleLanguageChange} className="wiki-select">
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+            </select>
+          </div>
+        )}
+        <div className="wiki-error">Error loading article. Please try again.</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="wikipedia-viewer">
+      {!hideControls && (
         <div className="wiki-controls">
           <input
             type="text"
@@ -90,28 +122,7 @@ const WikipediaViewer = () => {
             <option value="de">German</option>
           </select>
         </div>
-        <div className="wiki-error">Error loading article. Please try again.</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="wikipedia-viewer">
-      <div className="wiki-controls">
-        <input
-          type="text"
-          value={articleTitle}
-          onChange={handleTitleChange}
-          placeholder="Enter Wikipedia article title"
-          className="wiki-input"
-        />
-        <select value={language} onChange={handleLanguageChange} className="wiki-select">
-          <option value="en">English</option>
-          <option value="es">Spanish</option>
-          <option value="fr">French</option>
-          <option value="de">German</option>
-        </select>
-      </div>
+      )}
 
       {data?.parse?.text?.["*"] && (
         <div className="wiki-article">

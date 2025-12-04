@@ -1,15 +1,16 @@
-import SpeedrunWidget from "./components/SpeedrunWidget";
-import WikipediaViewer from "./components/WikipediaViewer";
-import Scoreboard from "./components/Scoreboard";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainMenu from "./pages/MainMenu";
+import Game from "./pages/Game";
 import "./App.css";
 
 function App() {
   return (
-    <div className="app">
-      <Scoreboard />
-      <SpeedrunWidget />
-      <WikipediaViewer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainMenu />} />
+        <Route path="/game" element={<Game />} />
+      </Routes>
+    </Router>
   );
 }
 

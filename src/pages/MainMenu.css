@@ -1,0 +1,429 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 90px;
+  position: relative;
+  min-height: 100vh;
+  transform: scale(1.5);
+  padding-left: 280px;
+  transform-origin: center top;
+}
+
+.menu-header {
+  text-align: left;
+  margin-bottom: 40px;
+  padding-left: 0;
+}
+
+.menu-title {
+  font-family: "Calibri", sans-serif;
+  font-size: 24px;
+  font-weight: 100;
+  color: #202122;
+  margin: 0 0 8px 0;
+}
+
+.menu-subtitle {
+  font-family: "Calibri", sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.mail {
+  width: 245px;
+  height: 120px;
+  background: #00a400;
+  position: relative;
+}
+
+.mail:hover {
+  outline: 2px solid #b0b0b0;
+  background: #00a400;
+}
+
+.mailIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 45px;
+  color: #fff;
+}
+
+.mailmail {
+  color: #fff;
+  position: relative;
+  top: 95px;
+  left: 15px;
+  font-family: "Calibri", sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.8px;
+  font-size: 14px;
+  cursor: default;
+}
+
+.skype {
+  width: 120px;
+  height: 120px;
+  background: #bc1e49;
+  position: relative;
+  top: 5px;
+}
+
+.skype:hover {
+  outline: 2px solid #b0b0b0;
+  background: #bc1e49;
+}
+
+.skypeIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  filter: brightness(0) invert(1);
+}
+
+.skypeskype {
+  color: #fff;
+  position: relative;
+  top: 95px;
+  left: 10px;
+  font-family: "Calibri", sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  cursor: default;
+}
+
+.map {
+  width: 120px;
+  height: 120px;
+  background: #ff8800;
+  position: relative;
+  left: 126px;
+  top: -115px;
+}
+
+.map:hover {
+  outline: 2px solid #b0b0b0;
+  background: #ff8800;
+}
+
+.mapIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 45px;
+  height: 45px;
+  color: #fff;
+}
+
+.mapmap {
+  color: #fff;
+  position: relative;
+  top: 95px;
+  left: 10px;
+  font-family: "Calibri", sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  cursor: default;
+}
+
+.read {
+  width: 120px;
+  height: 120px;
+  background: #bc1e49;
+  position: relative;
+  top: -110px;
+}
+
+.read:hover {
+  outline: 2px solid #b0b0b0;
+  background: #bc1e49;
+}
+
+.readIconContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 65px;
+  height: 65px;
+}
+
+.readIcon {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) invert(1);
+}
+
+.readLockIcon {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  filter: drop-shadow(0 0 0 #ff0000) drop-shadow(0 0 0 #ff0000)
+    drop-shadow(0 0 0 #ff0000) drop-shadow(0 0 0 #ff0000);
+  stroke: #ff0000;
+  stroke-width: 2px;
+  paint-order: stroke fill;
+}
+
+.readread {
+  color: #fff;
+  position: relative;
+  top: 95px;
+  left: 10px;
+  font-family: "Calibri", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  cursor: default;
+}
+
+.desktop {
+  width: 245px;
+  height: 120px;
+  background: #0079c9;
+  position: relative;
+  top: -105px;
+}
+
+.desktop:hover {
+  outline: 2px solid #b0b0b0;
+  background: #0079c9;
+}
+
+.desktopIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 35px;
+  color: #fff;
+}
+
+.desktopdesktop {
+  color: #fff;
+  position: relative;
+  top: 95px;
+  left: 15px;
+  font-family: "Calibri", sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.9px;
+  font-size: 13px;
+  cursor: default;
+}
+
+.calendar {
+  width: 245px;
+  height: 120px;
+  background: #a400ab;
+  position: relative;
+  top: -360px;
+  left: 250px;
+}
+
+.calendar:hover {
+  outline: 2px solid #b0b0b0;
+  background: #a400ab;
+}
+
+.calendarIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  filter: brightness(0) invert(1);
+}
+
+.calendarDate {
+  display: none;
+}
+
+.calendarDay {
+  color: #ffffff;
+  position: relative;
+  top: 95px;
+  left: 15px;
+  font-family: "Calibri", sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.8px;
+  font-size: 14px;
+  cursor: default;
+}
+
+.sports {
+  width: 245px;
+  height: 245px;
+  background: #61b8fa;
+  position: relative;
+  top: -355px;
+  left: 250px;
+}
+
+.sports:hover {
+  outline: 2px solid #b0b0b0;
+  background: #61b8fa;
+}
+
+.sportsIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  color: #fff;
+}
+
+.sportsDate {
+  display: none;
+}
+
+.sportsLabel {
+  color: #fff;
+  position: relative;
+  top: 220px;
+  left: 10px;
+  font-family: "Calibri", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  cursor: default;
+}
+
+.weather {
+  width: 245px;
+  height: 245px;
+  background: #3a8db7;
+  position: relative;
+  top: -590px;
+  left: 250px;
+}
+
+.weather:hover {
+  outline: 2px solid #b0b0b0;
+  background: #3a8db7;
+}
+
+.weatherIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 65px;
+  color: #fff;
+}
+
+.weatherweather {
+  color: #fff;
+  position: relative;
+  top: 220px;
+  left: 10px;
+  font-family: "Calibri", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  cursor: default;
+}
+
+.photos {
+  width: 120px;
+  height: 120px;
+  background: #142b6b;
+  position: relative;
+  top: -725px;
+  left: 500px;
+}
+
+.photos:hover {
+  outline: 2px solid #b0b0b0;
+  background: #1e3a8a;
+}
+
+.photoIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+.photophoto {
+  color: #fff;
+  position: relative;
+  top: 95px;
+  left: 10px;
+  font-family: "Calibri", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  cursor: default;
+}
+
+.help {
+  width: 120px;
+  height: 120px;
+  background: #808080;
+  position: relative;
+  top: -719px;
+  left: 500px;
+}
+
+.help:hover {
+  outline: 2px solid #b0b0b0;
+  background: #808080;
+}
+
+.helpIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  color: #fff;
+}
+
+.helphelp {
+  color: #fff;
+  position: relative;
+  top: 95px;
+  left: 10px;
+  font-family: "Calibri", sans-serif;
+  font-size: 13px;
+  cursor: default;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 6px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3f4958;
+}
+
+.menu-article-preview {
+  position: absolute;
+  right: 20px;
+  top: 100px;
+  z-index: 10;
+  transform: scale(0.667); /* Counteract the 1.5x scale from container */
+  transform-origin: top right;
+}

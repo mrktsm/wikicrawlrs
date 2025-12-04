@@ -1,0 +1,108 @@
+import "./MainMenu.css";
+import multiplayerIcon from "../assets/two-players-joysticks-multiplayer-svgrepo-com.svg";
+import fightIcon from "../assets/fight-svgrepo-com(1).svg";
+import { IoCalendarNumberSharp } from "react-icons/io5";
+import { IoIosSettings } from "react-icons/io";
+import { FaGithub } from "react-icons/fa";
+import { SiWikipedia } from "react-icons/si";
+import ArticlePreview from "../components/ArticlePreview";
+
+const MainMenu = () => {
+  return (
+    <div className="container">
+      <div className="menu-header">
+        <h1 className="menu-title">Wiki Crawlers</h1>
+        <p className="menu-subtitle">
+          Navigate through Wikipedia articles and compete with others to reach
+          your destination.
+        </p>
+      </div>
+      <div className="mail">
+        <i className="fa fa-play fa-3x mailIcon"></i>
+        <span className="mailmail">Single Player</span>
+      </div>
+
+      <div className="skype">
+        <img src={fightIcon} alt="Duel" className="skypeIcon" />
+        <span className="skypeskype">Duel</span>
+      </div>
+
+      <div className="map">
+        <IoCalendarNumberSharp className="mapIcon" />
+        <span className="mapmap">Daily</span>
+      </div>
+
+      <div className="calendar">
+        <img src={multiplayerIcon} alt="Multiplayer" className="calendarIcon" />
+        <span className="calendarDay">Multiplayer</span>
+      </div>
+
+      <div className="sports">
+        <IoIosSettings className="sportsIcon" />
+        <span className="sportsLabel">Settings</span>
+      </div>
+
+      <div className="photos">
+        <FaGithub className="photoIcon" />
+        <span className="photophoto">GitHub</span>
+      </div>
+
+      <div className="help">
+        <SiWikipedia className="helpIcon" />
+        <span className="helphelp">Today's Article</span>
+      </div>
+
+      <div className="people">
+        <i className="fa fa-user fa-3x peopleIcon"></i>
+        <span className="peoplepeople">People</span>
+      </div>
+
+      <div className="ie">
+        <i className="fa fa-internet-explorer fa-3x ieIcon"></i>
+        <span className="ieie">Internet Explorer</span>
+      </div>
+
+      <div className="video">
+        <i className="fa fa-play-circle fa-2x videoIcon"></i>
+      </div>
+
+      <div className="camera">
+        <i className="fa fa-camera fa-2x cameraIcon"></i>
+      </div>
+
+      <div className="game">
+        <i className="fa fa-gamepad fa-2x gameIcon"></i>
+      </div>
+
+      <div className="headPhone">
+        <i className="fa fa-headphones fa-2x headPhoneIcon"></i>
+      </div>
+
+      <div className="ws">
+        <i className="fa fa-shopping-bag fa-2x wsIcon"></i>
+        <span className="wsws">Store</span>
+      </div>
+
+      <div className="fd">
+        <i className="fa fa-spoon fa-4x fdIcon"></i>
+        <span className="fdfd">Food & Drink</span>
+      </div>
+
+      <div className="skydrive">
+        <i className="fa fa-cloud fa-3x skydriveIcon"></i>
+        <span className="skydriveskydrive">SkyDrive</span>
+      </div>
+
+      <div className="health">
+        <i className="fa fa-heartbeat fa-3x healthIcon"></i>
+        <span className="healthhealth">Health</span>
+      </div>
+
+      <div className="menu-article-preview">
+        <ArticlePreview title="Cat" />
+      </div>
+    </div>
+  );
+};
+
+export default MainMenu;

@@ -16,16 +16,19 @@
   min-width: 200px;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 4px;
+  background: white;
+  color: #202122;
 }
 
 .wiki-select {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 4px;
   background: white;
+  color: #202122;
 }
 
 .wiki-loading,
@@ -54,6 +57,7 @@
   padding-bottom: 10px;
   font-family: "Linux Libertine", "Georgia", "Times", serif;
   font-weight: normal;
+  color: #202122;
 }
 
 .wiki-content {
