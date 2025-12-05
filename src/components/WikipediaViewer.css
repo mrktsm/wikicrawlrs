@@ -1,7 +1,7 @@
 .wikipedia-viewer {
   max-width: 1200px;
   margin: 0 auto 0 360px; /* Add left margin for speedrun widget */
-  padding: 20px;
+  padding: 6px 20px;
 }
 
 .wiki-controls {
@@ -45,7 +45,7 @@
 
 .wiki-article {
   background: white;
-  padding: 30px;
+  padding: 10px 30px;
   border-radius: 8px;
   overflow: visible; /* Don't clip floated content */
 }

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import DOMPurify from "dompurify";
 import "./WikipediaViewer.css";
+import WikipediaSkeleton from "./WikipediaSkeleton";
 
 interface WikiApiArticle {
   parse?: {
@@ -101,7 +102,7 @@ const WikipediaViewer = ({ initialTitle = "React_(JavaScript_library)", hideCont
             </select>
           </div>
         )}
-        <div className="wiki-loading">Loading article...</div>
+        <WikipediaSkeleton />
       </div>
     );
   }
