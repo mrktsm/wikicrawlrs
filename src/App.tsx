@@ -12,11 +12,13 @@ import "./App.css";
 function AppRoutes() {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
-  const [transitionStage, setTransitionStage] = useState("entering");
+  const [transitionStage, setTransitionStage] = useState("idle");
+  const [prevLocation, setPrevLocation] = useState(location);
 
   useEffect(() => {
     if (location !== displayLocation) {
       setTransitionStage("exiting");
+      setPrevLocation(displayLocation);
     }
   }, [location, displayLocation]);
 
@@ -25,17 +27,37 @@ function AppRoutes() {
       const timer = setTimeout(() => {
         setDisplayLocation(location);
         setTransitionStage("entering");
-      }, 500);
+      }, 400);
+      return () => clearTimeout(timer);
+    } else if (transitionStage === "entering") {
+      // Clear animation class after it completes to restore fixed positioning
+      const timer = setTimeout(() => {
+        setTransitionStage("idle");
+      }, 400);
       return () => clearTimeout(timer);
     }
   }, [transitionStage, location]);
 
   return (
-    <div className={`page-transition ${transitionStage}`}>
-      <Routes location={displayLocation}>
-        <Route path="/" element={<MainMenu />} />
-        <Route path="/game" element={<Game />} />
-      </Routes>
+    <div className="page-transition-container">
+      {transitionStage === "exiting" && (
+        <div className="page-transition exiting">
+          <Routes location={prevLocation}>
+            <Route path="/" element={<MainMenu />} />
+            <Route path="/game" element={<Game />} />
+          </Routes>
+        </div>
+      )}
+      <div
+        className={`page-transition ${
+          transitionStage === "entering" ? "entering" : ""
+        }`}
+      >
+        <Routes location={displayLocation}>
+          <Route path="/" element={<MainMenu />} />
+          <Route path="/game" element={<Game />} />
+        </Routes>
+      </div>
     </div>
   );
 }
