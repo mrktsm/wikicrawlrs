@@ -56,6 +56,7 @@
   background: linear-gradient(to bottom, #33cc33, #00a400);
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: default;
 }
 
 .mail:hover {
@@ -333,4 +334,174 @@
   right: 20px;
   top: 100px;
   z-index: 10;
+}
+
+/* Content wrapper for animations */
+.content-wrapper {
+  position: relative;
+  width: min(95vw, 1200px);
+  max-width: 100%;
+  /* Fixed height to match button grid so header doesn't move */
+  height: calc(3 * clamp(140px, 15vw, 220px) + 2 * 8px);
+}
+
+/* Button grid animation */
+.button-grid {
+  transition: opacity 0.3s ease;
+}
+
+.button-grid.hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Single Player Options */
+.single-player-options {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+}
+
+.single-player-options.visible {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #666;
+  font-family: "Calibri", sans-serif;
+  font-size: clamp(16px, 2vw, 20px);
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 30px;
+  transition: color 0.2s ease;
+}
+
+.back-button:hover {
+  color: #333;
+}
+
+.back-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.options-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 500px;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-label {
+  font-family: "Calibri", sans-serif;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 500;
+  color: #333;
+}
+
+.input-row {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+
+.option-input {
+  font-family: "Calibri", sans-serif;
+  font-size: clamp(14px, 1.8vw, 18px);
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  flex: 1;
+}
+
+.option-input:focus {
+  border-color: #33cc33;
+  box-shadow: 0 0 0 3px rgba(51, 204, 51, 0.1);
+}
+
+.option-input::placeholder {
+  color: #aaa;
+}
+
+.random-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  background: linear-gradient(to bottom, #fff, #eee);
+  color: #333;
+  border: 2px solid #ddd;
+  border-left: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.random-button:hover {
+  background: linear-gradient(to bottom, #fff, #e5e5e5);
+}
+
+.random-button:active {
+  background: linear-gradient(to bottom, #ddd, #eee);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.random-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.start-game-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Calibri", sans-serif;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 500;
+  padding: 16px 32px;
+  background: linear-gradient(to bottom, #33cc33, #00a400);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 16px;
+}
+
+.start-game-button:hover {
+  background: linear-gradient(to bottom, #66ff66, #33cc33);
+}
+
+.start-game-button:active {
+  transform: scale(0.98);
+}
+
+.start-game-button i {
+  font-size: clamp(16px, 2vw, 22px);
 }
